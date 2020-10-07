@@ -61,7 +61,7 @@ function SignOut() {
 type chatMessage = { text: string, uid: any, photoURL: string }
 
 function ChatRoom() {
-  const dummy = useRef<HTMLSpanElement>(null)
+  const chatBottom = useRef<HTMLSpanElement>(null)
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt').limit(25)
 
@@ -79,13 +79,14 @@ function ChatRoom() {
       photoURL
     })
     setFormValue('')
+    chatBottom.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
     <>
       <main>
         {messages && messages?.map(msg => <ChatMessage key={(msg as any).id} message={msg} />)}
-        <span ref={dummy}></span>
+        <span ref={chatBottom}></span>
       </main>
       <form onSubmit={sendMessage}>
         <input type="text"
