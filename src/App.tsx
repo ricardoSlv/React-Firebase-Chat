@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>⚛️🔥💬</h1>
+        <h1><span role="img" aria-label="react-rocks">⚛️🔥💬</span></h1>
         <SignOut />
       </header>
 
